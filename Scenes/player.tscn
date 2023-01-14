@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6j256uob6dht"]
+
+[ext_resource type="Script" path="res://Scenes/Stats.cs" id="1_prxc8"]
+[ext_resource type="Script" path="res://Scenes/PlayerBuildPlacement.cs" id="2_7sgop"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egrn0"]
+albedo_color = Color(0.12549, 0.196078, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ehv36"]
+material = SubResource("StandardMaterial3D_egrn0")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1udpk"]
+
+[node name="player" type="CharacterBody3D"]
+collision_layer = 129
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_ehv36")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_1udpk")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("1_prxc8")
+
+[node name="Build" type="Node" parent="."]
+script = ExtResource("2_7sgop")

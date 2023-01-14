@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy1mjv3ngx4b6"]
+
+[ext_resource type="PackedScene" uid="uid://qt8pcehpt5ws" path="res://Scenes/floor.tscn" id="1_6fw67"]
+[ext_resource type="PackedScene" uid="uid://bymgieibsfe5" path="res://Scenes/corner.tscn" id="2_e00wc"]
+[ext_resource type="Script" path="res://Scenes/Placement.cs" id="3_bb4kw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chpvb"]
+size = Vector3(5, 5, 5)
+
+[node name="cell" type="Node3D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_6fw67")]
+
+[node name="corner" parent="." instance=ExtResource("2_e00wc")]
+
+[node name="corner2" parent="." instance=ExtResource("2_e00wc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="corner3" parent="." instance=ExtResource("2_e00wc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="corner4" parent="." instance=ExtResource("2_e00wc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="placement" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+script = ExtResource("3_bb4kw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placement"]
+shape = SubResource("BoxShape3D_chpvb")

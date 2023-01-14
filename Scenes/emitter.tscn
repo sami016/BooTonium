@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://fbn3lcs57j3v"]
+
+[ext_resource type="Script" path="res://Scenes/Emitter.cs" id="1_r21tv"]
+[ext_resource type="PackedScene" uid="uid://chigcosxidykn" path="res://Models/grave.blend" id="2_wpl1n"]
+[ext_resource type="Texture2D" uid="uid://lcijlsmsnwfj" path="res://Textures/ghost.png" id="3_oh4ro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2wwv"]
+albedo_color = Color(0.784314, 0.768627, 0.807843, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6afqj"]
+material = SubResource("StandardMaterial3D_x2wwv")
+size = Vector2(8, 8)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_swt61"]
+data = PackedVector3Array(4, 0, 4, -4, 0, 4, 4, 0, -4, -4, 0, 4, -4, 0, -4, 4, 0, -4)
+
+[sub_resource type="FogMaterial" id="FogMaterial_d2rcm"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vypbf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avbgs"]
+transparency = 1
+albedo_texture = ExtResource("3_oh4ro")
+
+[node name="emitter" type="StaticBody3D"]
+script = ExtResource("1_r21tv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_6afqj")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_swt61")
+
+[node name="grave" parent="." instance=ExtResource("2_wpl1n")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08909, 0.11477)
+extents = Vector3(3, 1, 4)
+shape = 2
+material = SubResource("FogMaterial_d2rcm")
+
+[node name="icon" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.39769, 3, 0)
+mesh = SubResource("PlaneMesh_vypbf")
+surface_material_override/0 = SubResource("StandardMaterial3D_avbgs")

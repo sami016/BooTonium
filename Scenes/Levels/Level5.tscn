@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmbn3t0idv7p1"]
+
+[ext_resource type="PackedScene" uid="uid://cexjuyc8jjdui" path="res://Scenes/play.tscn" id="1_67mw6"]
+[ext_resource type="PackedScene" uid="uid://fbn3lcs57j3v" path="res://Scenes/emitter.tscn" id="2_nj7rn"]
+[ext_resource type="PackedScene" uid="uid://cksk8ie3mdcav" path="res://Scenes/chamber.tscn" id="3_cfv3v"]
+
+[node name="play" instance=ExtResource("1_67mw6")]
+
+[node name="configuration" type="Node3D" parent="." index="6"]
+
+[node name="emitter" parent="configuration" index="0" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 0, -8)
+Direction = Vector2i(0, 1)
+
+[node name="emitter2" parent="configuration" index="1" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -8)
+Direction = Vector2i(0, 1)
+
+[node name="emitter3" parent="configuration" index="2" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 0, -8)
+Direction = Vector2i(0, 1)
+
+[node name="emitter4" parent="configuration" index="3" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 40)
+Direction = Vector2i(0, -1)
+
+[node name="emitter5" parent="configuration" index="4" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, 40)
+Direction = Vector2i(0, -1)
+
+[node name="emitter6" parent="configuration" index="5" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24, 0, 32.2)
+Direction = Vector2i(1, 0)
+
+[node name="emitter7" parent="configuration" index="6" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24.2, 0, 16.2)
+Direction = Vector2i(1, 0)
+
+[node name="emitter8" parent="configuration" index="7" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24.2, 0, 0.200001)
+Direction = Vector2i(1, 0)
+
+[node name="emitter9" parent="configuration" index="8" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23.8, 0, 24.2)
+Direction = Vector2i(-1, 0)
+
+[node name="emitter10" parent="configuration" index="9" instance=ExtResource("2_nj7rn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23.8, 0, 8.2)
+Direction = Vector2i(-1, 0)
+
+[node name="chamber" parent="configuration" index="10" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, -8)
+
+[node name="chamber2" parent="configuration" index="11" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, -8)
+
+[node name="chamber3" parent="configuration" index="12" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 0, 40)
+
+[node name="chamber4" parent="configuration" index="13" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 40)
+
+[node name="chamber5" parent="configuration" index="14" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 0, 40)
+
+[node name="chamber6" parent="configuration" index="15" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24, 0, 8)
+
+[node name="chamber7" parent="configuration" index="16" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24, 0, 24)
+
+[node name="chamber8" parent="configuration" index="17" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, 0)
+
+[node name="chamber9" parent="configuration" index="18" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, 16)
+
+[node name="chamber10" parent="configuration" index="19" instance=ExtResource("3_cfv3v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, 32)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bihrecxhnsosm"]
+
+[ext_resource type="PackedScene" uid="uid://cicjmrt45pvn6" path="res://Models/blaster.blend" id="1_51jkh"]
+[ext_resource type="Script" path="res://Scenes/Placements/Blaster.cs" id="1_hqh6d"]
+
+[node name="blaster" type="Node3D"]
+script = ExtResource("1_hqh6d")
+
+[node name="blaster" parent="." instance=ExtResource("1_51jkh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
