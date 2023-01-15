@@ -15,11 +15,3 @@ skeleton = NodePath("../..")
 [node name="Block3" parent="." instance=ExtResource("1_23htm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -4)
 skeleton = NodePath("../..")
-
-[node name="Block4" parent="." instance=ExtResource("1_23htm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, -2)
-skeleton = NodePath("../..")
-
-[node name="Block5" parent="." instance=ExtResource("1_23htm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, -4)
-skeleton = NodePath("../..")

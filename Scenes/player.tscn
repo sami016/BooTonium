@@ -12,7 +12,7 @@ material = SubResource("StandardMaterial3D_egrn0")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1udpk"]
 
 [node name="player" type="CharacterBody3D"]
-collision_layer = 129
+collision_layer = 128
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_ehv36")

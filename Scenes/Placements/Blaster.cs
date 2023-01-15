@@ -35,8 +35,6 @@ public partial class Blaster : Node3D
 			.Cast<Node3D>();
 		foreach (var enemy in enemies)
 		{
-            GD.Print((enemy.GlobalPosition - GlobalPosition).Length());
-
             if ((enemy.GlobalPosition - GlobalPosition).LengthSquared() < Range * Range)
 			{
 				Target = enemy;

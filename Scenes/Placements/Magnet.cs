@@ -23,9 +23,7 @@ public partial class Magnet : Node3D
 
     private void ChangeVelocity(Enemy enemy)
     {
-        var speed = enemy.Velocity.Length();
-        var newVelocity = GlobalTransform.basis.z * speed;
-        enemy.Velocity = newVelocity;
+        enemy.ChangeDirectionFromField(this, GlobalTransform.basis.z);
     }
 
 

@@ -58,3 +58,5 @@ text = "Level 4"
 [node name="Button5" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "Level 5"
+script = ExtResource("2_eu6bg")
+LoadScene = "res://Scenes/Levels/Level5.tscn"

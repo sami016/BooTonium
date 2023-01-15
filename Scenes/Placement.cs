@@ -55,9 +55,6 @@ public partial class Placement : Area3D
 
     internal void Rotate()
     {
-		GD.Print("Rotate");
-        GD.Print(_currentPlacement);
-        GD.Print(_currentPlacement.RotationDegrees.y);
         _currentPlacement.RotationDegrees += new Vector3(0, 90, 0);
     }
 }

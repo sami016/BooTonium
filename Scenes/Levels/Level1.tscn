@@ -8,7 +8,7 @@
 
 [node name="play" instance=ExtResource("1_7s8gh")]
 
-[node name="configuration" type="Node3D" parent="." index="6"]
+[node name="configuration" type="Node3D" parent="." index="5"]
 
 [node name="emitter2" parent="configuration" index="0" instance=ExtResource("2_kiw48")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -8)

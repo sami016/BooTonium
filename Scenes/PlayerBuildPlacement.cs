@@ -33,8 +33,6 @@ public partial class PlayerBuildPlacement : Node
 
     private bool CanRotate()
     {
-        GD.Print(Target);
-        GD.Print(Target?.IsAvailable);
         return Target != null
             && !Target.IsAvailable;
     }

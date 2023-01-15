@@ -9,6 +9,7 @@ public partial class Emitter : StaticBody3D
 
 	public override void _Ready()
 	{
+		_count = 1;
 	}
 
 	public override void _Process(double delta)
@@ -27,8 +28,8 @@ public partial class Emitter : StaticBody3D
 	private void Spawn()
 	{
 		var enemy = PackedEnemyScene.Instantiate<Enemy>();
-        enemy.Velocity = new Vector3(Direction.x, 0, Direction.y) * 2;
+        enemy.Direction = new Vector3(Direction.x, 0, Direction.y);
         GetParent().GetParent().AddChild(enemy, true);
-        enemy.GlobalPosition = GlobalPosition + Vector3.Up * 0.5f;
+        enemy.GlobalPosition = GlobalPosition + Vector3.Up * 2.5f;
     }
 }
