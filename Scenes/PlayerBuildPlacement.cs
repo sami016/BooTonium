@@ -4,13 +4,23 @@ using System;
 public partial class PlayerBuildPlacement : Node
 {
 	public Placement Target { get; set; }
+    public PlacementType Type { get; set; } = PlacementType.Magnet;
 
-	public override void _Ready()
+
+    public override void _Ready()
 	{
 	}
 
 	public override void _Process(double delta)
     {
+        if (Input.IsActionJustPressed("item_1"))
+        {
+            SwitchItem(PlacementType.Magnet);
+        }
+        if (Input.IsActionJustPressed("item_2"))
+        {
+            SwitchItem(PlacementType.Accelerator);
+        }
         if (Input.IsActionJustPressed("use")
             && CanPlace())
         {
@@ -21,6 +31,11 @@ public partial class PlayerBuildPlacement : Node
         {
             Rotate();
         }
+    }
+
+    private void SwitchItem(PlacementType placementType)
+    {
+        Type = placementType;
     }
 
     private bool CanPlace()
@@ -39,7 +54,7 @@ public partial class PlayerBuildPlacement : Node
 
     private void Place()
     {
-        Target.Place(PlacementType.Magnet);
+        Target.Place(Type);
     }
 
     private void Rotate()

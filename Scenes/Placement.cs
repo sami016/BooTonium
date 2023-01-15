@@ -9,7 +9,8 @@ public partial class Placement : Area3D
         { PlacementType.SpeedBooster, ResourceLoader.Load<PackedScene>("res://Scenes/Placements/booster.tscn") },
 
         { PlacementType.Blaster, ResourceLoader.Load<PackedScene>("res://Scenes/Placements/blaster.tscn") },
-		{ PlacementType.Magnet, ResourceLoader.Load<PackedScene>("res://Scenes/Placements/magnet.tscn")  }
+        { PlacementType.Magnet, ResourceLoader.Load<PackedScene>("res://Scenes/Placements/magnet.tscn")  },
+        { PlacementType.Accelerator, ResourceLoader.Load<PackedScene>("res://Scenes/Placements/accelerator.tscn")  }
     };
 
 	private PlacementType? _typePlaced;

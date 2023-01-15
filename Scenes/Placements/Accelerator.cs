@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Magnet : Node3D
+public partial class Accelerator : Node3D
 {
     public override void _Ready()
     {
@@ -13,12 +13,9 @@ public partial class Magnet : Node3D
     {
         if (body is Enemy enemy)
         {
-            ChangeVelocity(enemy);
+            GD.Print("accelerating");
+            enemy.Accelerate(this);
         }
     }
 
-    private void ChangeVelocity(Enemy enemy)
-    {
-        enemy.ChangeDirectionFromField(this, GlobalTransform.basis.z);
-    }
 }

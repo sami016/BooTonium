@@ -7,8 +7,8 @@ public partial class Enemy : CharacterBody3D
 	private Node3D _ghostModel;
 	private double _count;
 
-	private float _speed = 5f;
-	private TrackPosition _trackPosition = TrackPosition.Starboard;
+	private float _speed = 3f;
+	public TrackPosition TrackPosition { get; set; } = TrackPosition.Starboard;
 	private Vector3 _direction;
 
 	private Node _lastDirectionFieldInfluence;
@@ -53,16 +53,15 @@ public partial class Enemy : CharacterBody3D
 
 	private void CollideRotate(Vector3 preMovePosition)
 	{
-		GD.Print("Collide rotate");
-        Direction = GlobalTransform.basis.x * _trackPosition.GetPositionMultiplier();
+        Direction = GlobalTransform.basis.x * TrackPosition.GetPositionMultiplier();
         Position = preMovePosition;
 
-        _trackPosition = _trackPosition.GetOpposite();
+        TrackPosition = TrackPosition.GetOpposite();
 	}
 
 	private Vector3 GetTrackVelocityAdjust()
 	{
-		var targetUnits = (float)(Math.Round(GlobalPosition.Dot(GlobalTransform.basis.x) / 8) * 8 + 1 * _trackPosition.GetPositionMultiplier());
+		var targetUnits = (float)(Math.Round(GlobalPosition.Dot(GlobalTransform.basis.x) / 8) * 8 + 1 * TrackPosition.GetPositionMultiplier());
         var diffUnits = targetUnits
             - (float)GlobalPosition.Dot(GlobalTransform.basis.x);
 
@@ -80,5 +79,10 @@ public partial class Enemy : CharacterBody3D
 		}
 		Direction = direction;
 		_lastDirectionFieldInfluence = lastDirectionFieldInfluence;
+    }
+
+    public void Accelerate(Accelerator accelerator)
+    {
+		_speed = 6f;
     }
 }

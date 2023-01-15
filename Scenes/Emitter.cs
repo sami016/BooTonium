@@ -5,6 +5,7 @@ public partial class Emitter : StaticBody3D
 {
     private static PackedScene PackedEnemyScene = ResourceLoader.Load<PackedScene>("res://Scenes/enemy.tscn");
     [Export] public Vector2i Direction { get; set; }
+	[Export] public TrackPosition TrackPosition { get; set; } = TrackPosition.Port;
 	private double _count = 0;
 
 	public override void _Ready()
@@ -31,5 +32,6 @@ public partial class Emitter : StaticBody3D
         enemy.Direction = new Vector3(Direction.x, 0, Direction.y);
         GetParent().GetParent().AddChild(enemy, true);
         enemy.GlobalPosition = GlobalPosition + Vector3.Up * 2.5f;
+		enemy.TrackPosition = TrackPosition;
     }
 }

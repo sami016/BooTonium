@@ -19,7 +19,7 @@ public partial class player : CharacterBody3D
 		Stats.Apply(new StatEffect
 		{
 			Type = StatType.MoveSpeed,
-			Add = 5,
+			Add = 10,
 			Permanent = true
 		});
     }

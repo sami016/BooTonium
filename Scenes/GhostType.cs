@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum PlacementType
+public enum GhostType
 {
-    SpeedBooster,
-    Blaster,
-    Magnet,
-    Accelerator
+    Normal,
+    Blue,
+    Green,
+    Red,
+    Purple
 }
