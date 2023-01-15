@@ -1,0 +1,2 @@
+﻿
+ - Create helper function for getting level manager.

@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://2adi2jtoq21d"]
+[gd_scene load_steps=9 format=3 uid="uid://2adi2jtoq21d"]
 
+[ext_resource type="Script" path="res://Scenes/Water.cs" id="1_3eeaq"]
 [ext_resource type="Texture2D" uid="uid://5thb841p4281" path="res://Textures/holy-water.png" id="1_h2p7j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42jpo"]
@@ -21,7 +22,8 @@ size = Vector3(4, 4, 4)
 transparency = 1
 albedo_texture = ExtResource("1_h2p7j")
 
-[node name="Floor" type="StaticBody3D"]
+[node name="water" type="StaticBody3D"]
+script = ExtResource("1_3eeaq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_6afqj")
@@ -31,6 +33,8 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_swt61")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 256
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_orc48")

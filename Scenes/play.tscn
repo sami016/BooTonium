@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cexjuyc8jjdui"]
+[gd_scene load_steps=6 format=3 uid="uid://cexjuyc8jjdui"]
 
 [ext_resource type="PackedScene" uid="uid://dy1mjv3ngx4b6" path="res://Scenes/cell.tscn" id="1_dfj3w"]
 [ext_resource type="PackedScene" uid="uid://c6j256uob6dht" path="res://Scenes/player.tscn" id="1_hluua"]
 [ext_resource type="Script" path="res://Scenes/player.cs" id="2_g8k1q"]
+[ext_resource type="Script" path="res://Scenes/Reactor.cs" id="4_mvd3p"]
 
 [sub_resource type="Environment" id="Environment_a7mry"]
 volumetric_fog_enabled = true
@@ -101,3 +102,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 32)
 
 [node name="cell25" parent="grid" instance=ExtResource("1_dfj3w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 32)
+
+[node name="reactor" type="Node" parent="."]
+script = ExtResource("4_mvd3p")
