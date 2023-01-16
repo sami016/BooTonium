@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ba17gewuy3v47"]
+[gd_scene load_steps=8 format=3 uid="uid://08fq6iai3iis"]
 
-[ext_resource type="Script" path="res://Scenes/Placements/Magnet.cs" id="1_xlp6e"]
-[ext_resource type="Texture2D" uid="uid://dmp5grnxtuhyg" path="res://Textures/plain-arrow.png" id="2_5i3ny"]
+[ext_resource type="Script" path="res://Scenes/Placements/Magnet.cs" id="1_vam48"]
+[ext_resource type="Texture2D" uid="uid://dmp5grnxtuhyg" path="res://Textures/plain-arrow.png" id="2_22ggu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wkpjm"]
-size = Vector3(4, 4, 2)
+size = Vector3(4, 4, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dev5y"]
 transparency = 1
@@ -12,18 +12,17 @@ albedo_color = Color(0.356863, 1, 0.54902, 0.266667)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pegv1"]
 material = SubResource("StandardMaterial3D_dev5y")
-size = Vector3(4, 4, 2)
+size = Vector3(4, 4, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gs84"]
 transparency = 1
-albedo_texture = ExtResource("2_5i3ny")
+albedo_texture = ExtResource("2_22ggu")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_iywnw"]
 material = SubResource("StandardMaterial3D_0gs84")
-size = Vector2(4, 4)
 
 [node name="magnet" type="Node3D"]
-script = ExtResource("1_xlp6e")
+script = ExtResource("1_vam48")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
@@ -31,11 +30,9 @@ collision_mask = 256
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 shape = SubResource("BoxShape3D_wkpjm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 mesh = SubResource("BoxMesh_pegv1")
 
 [node name="icon" type="MeshInstance3D" parent="."]

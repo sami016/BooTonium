@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxfva3syhffmd"]
+
+[ext_resource type="Script" path="res://Scenes/Filter.cs" id="1_on8ba"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2ito7"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cct1l"]
+noise = SubResource("FastNoiseLite_2ito7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tut0j"]
+albedo_color = Color(0.0862745, 0.392157, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 0.854902, 1)
+emission_energy_multiplier = 0.03
+emission_texture = SubResource("NoiseTexture2D_cct1l")
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbbru"]
+material = SubResource("StandardMaterial3D_tut0j")
+size = Vector3(5, 2, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_t6h31"]
+data = PackedVector3Array(-2.5, 1, 0.25, 2.5, 1, 0.25, -2.5, -1, 0.25, 2.5, 1, 0.25, 2.5, -1, 0.25, -2.5, -1, 0.25, 2.5, 1, -0.25, -2.5, 1, -0.25, 2.5, -1, -0.25, -2.5, 1, -0.25, -2.5, -1, -0.25, 2.5, -1, -0.25, 2.5, 1, 0.25, 2.5, 1, -0.25, 2.5, -1, 0.25, 2.5, 1, -0.25, 2.5, -1, -0.25, 2.5, -1, 0.25, -2.5, 1, -0.25, -2.5, 1, 0.25, -2.5, -1, -0.25, -2.5, 1, 0.25, -2.5, -1, 0.25, -2.5, -1, -0.25, 2.5, 1, 0.25, -2.5, 1, 0.25, 2.5, 1, -0.25, -2.5, 1, 0.25, -2.5, 1, -0.25, 2.5, 1, -0.25, -2.5, -1, 0.25, 2.5, -1, 0.25, -2.5, -1, -0.25, 2.5, -1, 0.25, 2.5, -1, -0.25, -2.5, -1, -0.25)
+
+[node name="filter" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 12)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("1_on8ba")
+GhostType = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("BoxMesh_sbbru")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("ConcavePolygonShape3D_t6h31")

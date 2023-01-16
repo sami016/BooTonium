@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://clym8rfkx81bw"]
+
+[ext_resource type="PackedScene" uid="uid://b1uh13pww12kj" path="res://Scenes/Ghosts/enemy.tscn" id="1_2tqaw"]
+[ext_resource type="PackedScene" uid="uid://bjj0bwsimmq7a" path="res://Scenes/Ghosts/model_red.tscn" id="2_1pxnk"]
+
+[node name="enemy" instance=ExtResource("1_2tqaw")]
+Type = 3
+Speed = 10.0
+
+[node name="ghost" parent="." index="1" instance=ExtResource("2_1pxnk")]

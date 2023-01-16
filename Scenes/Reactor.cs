@@ -1,23 +1,34 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class Reactor : Node
 {
-    [Export] public double Health { get; set; } = 1.0;
-    [Export] public double Temperature { get; set; } = 0.0;
-	[Export] public double CoolingCoefficient { get; set; } = .002;
-	[Export] public double TemperateRequirement { get; set; } = 10.0;
+	private Water[] _waterNodes;
+
+	[Export] public double Health { get; set; } = 1.0;
+
+
+	public override void _Ready()
+	{
+		_waterNodes = GetWaterNodes()
+			.ToArray();
+	}
 
 	public override void _Process(double delta)
 	{
-		Temperature -= CoolingCoefficient * delta;
-		Temperature = Math.Max(Temperature, 0);
-		CheckTemperatureWinCondition();
+		foreach (var a in GetParent()
+            .GetChildren())
+		{
+			GD.Print(a.GetPath());
+		}
     }
 
-    public void ApplyHeat(double heat)
+    public void CheckVictoryCondition()
     {
-        Temperature += heat;
+		CheckWaterAbsorption();
     }
 
     public void ApplyDamage(double damage)
@@ -27,14 +38,28 @@ public partial class Reactor : Node
 		CheckHealthDeathCondition();
     }
 
-    private void CheckTemperatureWinCondition()
+	private IEnumerable<Water> GetWaterNodes()
 	{
-		if (TemperateRequirement <= 0)
+		return GetParent()
+			.GetNode("configuration")
+			.GetChildren()
+			.Where(x => x.Name.ToString().StartsWith("water"))
+			.Cast<Water>()
+			.Where(x => x != null);
+	}
+
+    private void CheckWaterAbsorption()
+	{
+		var win = true;
+		foreach (var water in GetWaterNodes())
 		{
-			return;
+			if (water.Remaining > 0)
+			{
+				win = false;
+			}
 		}
 
-		if (Temperature >= TemperateRequirement)
+		if (win)
 		{
 			Win();
 		}

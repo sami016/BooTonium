@@ -26,6 +26,16 @@ public partial class PlayerBuildPlacement : Node
         {
             Place();
         }
+        if (Input.IsActionJustPressed("interact")
+            && CanInteract())
+        {
+            Interact();
+        }
+        if (Input.IsActionJustPressed("destroy")
+            && CanDestroy())
+        {
+            Destroy();
+        }
         if (Input.IsActionJustPressed("rotate")
             && CanRotate())
         {
@@ -44,12 +54,27 @@ public partial class PlayerBuildPlacement : Node
             && Target.IsAvailable;
     }
 
+    private bool CanInteract()
+    {
+        return Target != null
+            && !Target.IsAvailable;
+    }
 
+    private bool CanDestroy()
+    {
+        return Target != null
+            && !Target.IsAvailable;
+    }
 
     private bool CanRotate()
     {
         return Target != null
             && !Target.IsAvailable;
+    }
+
+    public void Destroy()
+    {
+        Target.Destroy();
     }
 
     private void Place()
@@ -61,5 +86,10 @@ public partial class PlayerBuildPlacement : Node
     private void Rotate()
     {
         Target.Rotate();
+    }
+
+    private void Interact()
+    {
+        Target.Interact();
     }
 }

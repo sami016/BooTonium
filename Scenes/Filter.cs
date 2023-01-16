@@ -14,9 +14,6 @@ public partial class Filter : Area3D
     {
         if (body is Enemy enemy)
         {
-            GD.Print("filter hit");
-            GD.Print(body);
-            GD.Print(enemy.Type);
             if (enemy.Type != GhostType)
             {
                 enemy.QueueFree();

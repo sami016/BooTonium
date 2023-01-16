@@ -1,31 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dm7bktaspb3nm"]
+[gd_scene load_steps=7 format=3 uid="uid://cw4rh51h8d1mg"]
 
 [ext_resource type="PackedScene" uid="uid://cexjuyc8jjdui" path="res://Scenes/play.tscn" id="1_8be7g"]
 [ext_resource type="PackedScene" uid="uid://fbn3lcs57j3v" path="res://Scenes/emitter.tscn" id="2_inkav"]
 [ext_resource type="PackedScene" uid="uid://cksk8ie3mdcav" path="res://Scenes/chamber.tscn" id="3_rggwt"]
 [ext_resource type="PackedScene" uid="uid://2adi2jtoq21d" path="res://Scenes/water.tscn" id="4_71iok"]
 [ext_resource type="PackedScene" uid="uid://dbytldyeqe6yt" path="res://Scenes/filling.tscn" id="5_jsg7d"]
-[ext_resource type="Script" path="res://Scenes/Filter.cs" id="6_j2ssh"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2ito7"]
-frequency = 0.1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cct1l"]
-noise = SubResource("FastNoiseLite_2ito7")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tut0j"]
-albedo_color = Color(0.0862745, 0.392157, 1, 1)
-emission_enabled = true
-emission = Color(0, 0, 0.854902, 1)
-emission_energy_multiplier = 0.03
-emission_texture = SubResource("NoiseTexture2D_cct1l")
-
-[sub_resource type="BoxMesh" id="BoxMesh_sbbru"]
-material = SubResource("StandardMaterial3D_tut0j")
-size = Vector3(5, 2, 0.5)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_t6h31"]
-data = PackedVector3Array(-2.5, 1, 0.25, 2.5, 1, 0.25, -2.5, -1, 0.25, 2.5, 1, 0.25, 2.5, -1, 0.25, -2.5, -1, 0.25, 2.5, 1, -0.25, -2.5, 1, -0.25, 2.5, -1, -0.25, -2.5, 1, -0.25, -2.5, -1, -0.25, 2.5, -1, -0.25, 2.5, 1, 0.25, 2.5, 1, -0.25, 2.5, -1, 0.25, 2.5, 1, -0.25, 2.5, -1, -0.25, 2.5, -1, 0.25, -2.5, 1, -0.25, -2.5, 1, 0.25, -2.5, -1, -0.25, -2.5, 1, 0.25, -2.5, -1, 0.25, -2.5, -1, -0.25, 2.5, 1, 0.25, -2.5, 1, 0.25, 2.5, 1, -0.25, -2.5, 1, 0.25, -2.5, 1, -0.25, 2.5, 1, -0.25, -2.5, -1, 0.25, 2.5, -1, 0.25, -2.5, -1, -0.25, 2.5, -1, 0.25, 2.5, -1, -0.25, -2.5, -1, -0.25)
+[ext_resource type="PackedScene" uid="uid://cxfva3syhffmd" path="res://Scenes/filter_blue.tscn" id="6_ktqwa"]
 
 [node name="play" instance=ExtResource("1_8be7g")]
 
@@ -115,22 +95,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 40)
 [node name="filling19" parent="configuration" index="25" instance=ExtResource("5_jsg7d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 40)
 
-[node name="filter" type="Area3D" parent="configuration" index="26"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 12)
-collision_layer = 0
-collision_mask = 256
-monitorable = false
-script = ExtResource("6_j2ssh")
-GhostType = 1
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="configuration/filter" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("BoxMesh_sbbru")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="configuration/filter" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-shape = SubResource("ConcavePolygonShape3D_t6h31")
-
-[node name="reactor" parent="." index="6"]
-CoolingCoefficient = 0.05
-TemperateRequirement = 5.0
+[node name="filter" parent="configuration" index="26" instance=ExtResource("6_ktqwa")]

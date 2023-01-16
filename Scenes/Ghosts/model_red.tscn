@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjj0bwsimmq7a"]
+
+[ext_resource type="PackedScene" uid="uid://bewxoblt68gar" path="res://Models/ghost.blend" id="1_kayxd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1m3q"]
+albedo_color = Color(1, 0.14902, 0.14902, 1)
+
+[node name="ghost" instance=ExtResource("1_kayxd")]
+
+[node name="Icosphere" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_e1m3q")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="4"]
+light_color = Color(1, 0.172549, 0.192157, 1)

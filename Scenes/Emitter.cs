@@ -16,7 +16,8 @@ public partial class Emitter : StaticBody3D
 	public override void _Process(double delta)
 	{
 		_count += delta * 0.2;
-		if (_count > 1)
+
+        if (_count > 1)
 		{
 			_count -= 1;
 			//if (new Random().Next(10) == 0)

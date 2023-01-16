@@ -82,6 +82,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 40)
 
 [node name="water" parent="configuration" index="23" instance=ExtResource("5_m0xxo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24, 0, 32)
-
-[node name="reactor" parent="." index="6"]
-TemperateRequirement = 3.0

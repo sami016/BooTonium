@@ -55,8 +55,36 @@ public partial class Placement : Area3D
         _currentPlacement = placement;
     }
 
-    internal void Rotate()
+    public void Rotate()
     {
-        _currentPlacement.RotationDegrees += new Vector3(0, 90, 0);
+        if (_currentPlacement is IRotatable rotatable)
+        {
+            rotatable.Rotate();
+        }
+        else
+        {
+            _currentPlacement.RotationDegrees += new Vector3(0, 90, 0);
+        }
+    }
+
+	public void Destroy()
+    {
+        if (IsAvailable)
+        {
+            return;
+        }
+
+        _currentPlacement?.QueueFree();
+
+        _typePlaced = null;
+        _currentPlacement = null;
+    }
+
+    public void Interact()
+    {
+        if (_currentPlacement is IInteractable interactable)
+        {
+            interactable.Interact();
+        }
     }
 }

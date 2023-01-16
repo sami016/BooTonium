@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum GhostType
+public interface IRotatable
 {
-    White,
-    Blue,
-    Green,
-    Red
+    void Rotate();
 }

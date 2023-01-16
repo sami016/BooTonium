@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum GhostType
+internal interface IInteractable
 {
-    White,
-    Blue,
-    Green,
-    Red
+    string InteractDescription { get; }
+    void Interact();
 }
