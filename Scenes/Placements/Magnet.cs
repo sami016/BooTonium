@@ -19,6 +19,8 @@ public partial class Magnet : Node3D
 
     private void ChangeVelocity(Enemy enemy)
     {
+        GD.Print(enemy);
+
         enemy.ChangeDirectionFromField(this, GlobalTransform.basis.z);
     }
 }

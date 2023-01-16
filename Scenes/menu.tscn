@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://21olnvcjxwbw"]
+[gd_scene load_steps=4 format=3 uid="uid://21olnvcjxwbw"]
 
 [ext_resource type="Texture2D" uid="uid://4hd53ynvwan8" path="res://Textures/Title.png" id="1_hk247"]
+[ext_resource type="Texture2D" uid="uid://dlbehfow6lo8y" path="res://Textures/paper_render_1.png" id="2_a6rd1"]
 [ext_resource type="Script" path="res://Scenes/LinkButton.cs" id="2_eu6bg"]
 
 [node name="menu" type="Control"]
@@ -21,10 +22,24 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -400.0
+offset_top = 7.0
 offset_right = 400.0
-offset_bottom = 400.0
+offset_bottom = 407.0
 grow_horizontal = 2
 texture = ExtResource("1_hk247")
+
+[node name="TexturePaper" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 162.0
+offset_top = 309.0
+offset_right = 499.0
+offset_bottom = 596.0
+grow_horizontal = 2
+texture = ExtResource("2_a6rd1")
+expand_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -52,6 +67,8 @@ LoadScene = "res://Scenes/Levels/Level2.tscn"
 [node name="Button3" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "L3"
+script = ExtResource("2_eu6bg")
+LoadScene = "res://Scenes/Levels/Level3.tscn"
 
 [node name="Button4" type="Button" parent="HBoxContainer"]
 layout_mode = 2

@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 public enum GhostType
 {
-    Normal,
-    Blue,
-    Green,
-    Red,
-    Purple
+    White,
+    Blue
 }

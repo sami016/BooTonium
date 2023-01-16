@@ -3,12 +3,14 @@ using System;
 
 public partial class Enemy : CharacterBody3D
 {
-	private static Random Random = new Random();
-	private Node3D _ghostModel;
+	[Export] public GhostType Type { get; set; }
+	[Export] public float Speed { get; set; } = 3f;
+
+    public TrackPosition TrackPosition { get; set; } = TrackPosition.Starboard;
+
+    private Node3D _ghostModel;
 	private double _count;
 
-	private float _speed = 3f;
-	public TrackPosition TrackPosition { get; set; } = TrackPosition.Starboard;
 	private Vector3 _direction;
 
 	private Node _lastDirectionFieldInfluence;
@@ -37,7 +39,7 @@ public partial class Enemy : CharacterBody3D
 	public override void _PhysicsProcess(double delta)
     {
         var trackAdjustVelocity = GetTrackVelocityAdjust();
-        Velocity = _direction * _speed + trackAdjustVelocity;
+        Velocity = _direction * Speed + trackAdjustVelocity;
 		var preMovePosition = Position;
 		var hasCollided = MoveAndSlide();
 		if (hasCollided)
@@ -61,7 +63,7 @@ public partial class Enemy : CharacterBody3D
 
 	private Vector3 GetTrackVelocityAdjust()
 	{
-		var targetUnits = (float)(Math.Round(GlobalPosition.Dot(GlobalTransform.basis.x) / 8) * 8 + 1 * TrackPosition.GetPositionMultiplier());
+		var targetUnits = (float)(Math.Round(GlobalPosition.Dot(GlobalTransform.basis.x) / 8) * 8 + 2 * TrackPosition.GetPositionMultiplier());
         var diffUnits = targetUnits
             - (float)GlobalPosition.Dot(GlobalTransform.basis.x);
 
@@ -79,10 +81,5 @@ public partial class Enemy : CharacterBody3D
 		}
 		Direction = direction;
 		_lastDirectionFieldInfluence = lastDirectionFieldInfluence;
-    }
-
-    public void Accelerate(Accelerator accelerator)
-    {
-		_speed = 6f;
     }
 }

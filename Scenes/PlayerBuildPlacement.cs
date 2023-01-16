@@ -54,7 +54,8 @@ public partial class PlayerBuildPlacement : Node
 
     private void Place()
     {
-        Target.Place(Type);
+        var playerRotationY = (GetParent() as player).RotationDegrees.y;
+        Target.Place(Type, playerRotationY);
     }
 
     private void Rotate()

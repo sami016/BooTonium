@@ -1,0 +1,136 @@
+[gd_scene load_steps=12 format=3 uid="uid://dm7bktaspb3nm"]
+
+[ext_resource type="PackedScene" uid="uid://cexjuyc8jjdui" path="res://Scenes/play.tscn" id="1_8be7g"]
+[ext_resource type="PackedScene" uid="uid://fbn3lcs57j3v" path="res://Scenes/emitter.tscn" id="2_inkav"]
+[ext_resource type="PackedScene" uid="uid://cksk8ie3mdcav" path="res://Scenes/chamber.tscn" id="3_rggwt"]
+[ext_resource type="PackedScene" uid="uid://2adi2jtoq21d" path="res://Scenes/water.tscn" id="4_71iok"]
+[ext_resource type="PackedScene" uid="uid://dbytldyeqe6yt" path="res://Scenes/filling.tscn" id="5_jsg7d"]
+[ext_resource type="Script" path="res://Scenes/Filter.cs" id="6_j2ssh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2ito7"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cct1l"]
+noise = SubResource("FastNoiseLite_2ito7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tut0j"]
+albedo_color = Color(0.0862745, 0.392157, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 0.854902, 1)
+emission_energy_multiplier = 0.03
+emission_texture = SubResource("NoiseTexture2D_cct1l")
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbbru"]
+material = SubResource("StandardMaterial3D_tut0j")
+size = Vector3(5, 2, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_t6h31"]
+data = PackedVector3Array(-2.5, 1, 0.25, 2.5, 1, 0.25, -2.5, -1, 0.25, 2.5, 1, 0.25, 2.5, -1, 0.25, -2.5, -1, 0.25, 2.5, 1, -0.25, -2.5, 1, -0.25, 2.5, -1, -0.25, -2.5, 1, -0.25, -2.5, -1, -0.25, 2.5, -1, -0.25, 2.5, 1, 0.25, 2.5, 1, -0.25, 2.5, -1, 0.25, 2.5, 1, -0.25, 2.5, -1, -0.25, 2.5, -1, 0.25, -2.5, 1, -0.25, -2.5, 1, 0.25, -2.5, -1, -0.25, -2.5, 1, 0.25, -2.5, -1, 0.25, -2.5, -1, -0.25, 2.5, 1, 0.25, -2.5, 1, 0.25, 2.5, 1, -0.25, -2.5, 1, 0.25, -2.5, 1, -0.25, 2.5, 1, -0.25, -2.5, -1, 0.25, 2.5, -1, 0.25, -2.5, -1, -0.25, 2.5, -1, 0.25, 2.5, -1, -0.25, -2.5, -1, -0.25)
+
+[node name="play" instance=ExtResource("1_8be7g")]
+
+[node name="player" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 32)
+
+[node name="configuration" type="Node3D" parent="." index="5"]
+
+[node name="emitter" parent="configuration" index="0" instance=ExtResource("2_inkav")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24, 0, 0)
+Direction = Vector2i(1, 0)
+TrackPosition = 1
+
+[node name="emitter2" parent="configuration" index="1" instance=ExtResource("2_inkav")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, 0)
+Direction = Vector2i(-1, 0)
+
+[node name="chamber" parent="configuration" index="2" instance=ExtResource("3_rggwt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 0, 40)
+
+[node name="chamber2" parent="configuration" index="3" instance=ExtResource("3_rggwt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 0, 40)
+
+[node name="chamber4" parent="configuration" index="4" instance=ExtResource("3_rggwt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 40)
+
+[node name="water" parent="configuration" index="5" instance=ExtResource("4_71iok")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.0739, 0, 32.0024)
+
+[node name="water2" parent="configuration" index="6" instance=ExtResource("4_71iok")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -23.9261, 0, 32.0024)
+
+[node name="filling" parent="configuration" index="7" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 8)
+
+[node name="filling2" parent="configuration" index="8" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+
+[node name="filling3" parent="configuration" index="9" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 16)
+
+[node name="filling4" parent="configuration" index="10" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 16)
+
+[node name="filling5" parent="configuration" index="11" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 24)
+
+[node name="filling6" parent="configuration" index="12" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 24)
+
+[node name="filling7" parent="configuration" index="13" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="filling8" parent="configuration" index="14" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
+
+[node name="filling9" parent="configuration" index="15" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 16)
+
+[node name="filling10" parent="configuration" index="16" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
+
+[node name="filling11" parent="configuration" index="17" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 24)
+
+[node name="filling12" parent="configuration" index="18" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 24)
+
+[node name="filling13" parent="configuration" index="19" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -8)
+
+[node name="filling14" parent="configuration" index="20" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="filling15" parent="configuration" index="21" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="filling16" parent="configuration" index="22" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="filling17" parent="configuration" index="23" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -8)
+
+[node name="filling18" parent="configuration" index="24" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 40)
+
+[node name="filling19" parent="configuration" index="25" instance=ExtResource("5_jsg7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 40)
+
+[node name="filter" type="Area3D" parent="configuration" index="26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 12)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("6_j2ssh")
+GhostType = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="configuration/filter" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("BoxMesh_sbbru")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="configuration/filter" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("ConcavePolygonShape3D_t6h31")
+
+[node name="reactor" parent="." index="6"]
+CoolingCoefficient = 0.05
+TemperateRequirement = 5.0

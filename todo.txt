@@ -1,2 +1,4 @@
 ﻿
  - Create helper function for getting level manager.
+ - Capitalise all class names.
+

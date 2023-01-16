@@ -3,6 +3,8 @@ using System;
 
 public partial class Accelerator : Node3D
 {
+    private static PackedScene BluePackedScene = ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/blue.tscn");
+
     public override void _Ready()
     {
         var area3D = GetNode<Area3D>("./Area3D");
@@ -13,8 +15,23 @@ public partial class Accelerator : Node3D
     {
         if (body is Enemy enemy)
         {
-            GD.Print("accelerating");
-            enemy.Accelerate(this);
+            if (enemy.Type != GhostType.White)
+            {
+                return;
+            }
+
+            if ((GlobalTransform.basis.z).Dot(enemy.Direction) < 0)
+            {
+                return;
+            }
+
+
+            var upgraded = BluePackedScene.Instantiate<Enemy>();
+            upgraded.Direction = enemy.Direction;
+            upgraded.Position = enemy.Position;
+            upgraded.TrackPosition = enemy.TrackPosition;
+            GetParent().GetParent().AddChild(upgraded, true);
+            enemy.QueueFree();
         }
     }
 

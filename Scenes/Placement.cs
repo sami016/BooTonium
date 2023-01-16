@@ -34,7 +34,7 @@ public partial class Placement : Area3D
         (body as player).Placement.Target = null;
     }
 
-	public void Place(PlacementType placementType)
+	public void Place(PlacementType placementType, float playerRotationY)
 	{
 		if (!IsAvailable)
 		{
@@ -43,15 +43,16 @@ public partial class Placement : Area3D
 
 		_typePlaced = placementType;
 
-        CreatePlacement();
+        CreatePlacement(playerRotationY);
 	}
 
-	private void CreatePlacement()
+	private void CreatePlacement(float playerRotationY)
 	{
 		var placement = _scenes[_typePlaced.Value].Instantiate<Node3D>();
 		GetParent().GetParent().GetParent().AddChild(placement, true);
 		placement.GlobalTransform = GlobalTransform;
-		_currentPlacement = placement;
+		placement.RotationDegrees = new Vector3(0, playerRotationY+180, 0);
+        _currentPlacement = placement;
     }
 
     internal void Rotate()

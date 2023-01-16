@@ -40,7 +40,7 @@ public partial class player : CharacterBody3D
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_up", "move_down");
-		Vector3 direction = (Transform.basis * new Vector3(inputDir.x, 0, inputDir.y)).Normalized();
+		Vector3 direction = new Vector3(inputDir.x, 0, inputDir.y).Normalized();
 		if (direction != Vector3.Zero)
 		{
 			velocity.x = direction.x * moveSpeed;
@@ -53,6 +53,10 @@ public partial class player : CharacterBody3D
 		}
 
 		Velocity = velocity;
-		MoveAndSlide();
-	}
+        if (Velocity.LengthSquared() > 0.01)
+        {
+            LookAt(new Vector3(Position.x + Velocity.x, Position.y, Position.z + Velocity.z));
+        }
+        MoveAndSlide();
+    }
 }
