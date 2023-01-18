@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dbarrv6816s17" path="res://Textures/accelerator.png" id="1_tx5bj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wkpjm"]
-size = Vector3(4, 4, 4)
+size = Vector3(3, 4, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dev5y"]
 transparency = 1

@@ -11,3 +11,6 @@ emission = Color(0.27451, 0.27451, 0.27451, 1)
 
 [node name="Icosphere" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4pr2u")
+
+[node name="eyes1" parent="." index="1"]
+visible = false

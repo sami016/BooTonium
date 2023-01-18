@@ -5,9 +5,11 @@ public partial class Enemy : CharacterBody3D
 {
     private static PackedScene redPackedScene = ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/red.tscn");
     private static PackedScene greenPackedScene = ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/green.tscn");
+    private static PackedScene purplePackedScene = ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/purple.tscn");
 
     [Export] public GhostType Type { get; set; }
 	[Export] public float Speed { get; set; } = 3f;
+	public float Age { get; set; } = 0f;
 
     public TrackPosition TrackPosition { get; set; } = TrackPosition.Starboard;
 
@@ -39,6 +41,7 @@ public partial class Enemy : CharacterBody3D
 
 	public override void _Process(double delta)
 	{
+		Age += (float)delta;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -65,9 +68,9 @@ public partial class Enemy : CharacterBody3D
 	private void CollideRotate(Vector3 preMovePosition)
 	{
 		var oldDirection = Direction;
-        Direction = GlobalTransform.basis.x * TrackPosition.GetPositionMultiplier();
+        Direction = -GlobalTransform.basis.x * TrackPosition.GetPositionMultiplier();
         Position = preMovePosition;
-        TrackPosition = TrackPosition.GetOpposite();
+        //TrackPosition = TrackPosition.GetOpposite();
 	}
 
 	private Vector3 GetTrackVelocityAdjust()
@@ -92,13 +95,10 @@ public partial class Enemy : CharacterBody3D
 		var oldDirection = Direction;
         Direction = direction;
 
-        GD.Print("dot " + oldDirection.Dot(Direction));
-		GD.Print(TrackPosition);
-        if (oldDirection.Dot(Direction) < 0)
+        if (oldDirection.Dot(Direction) < 0.8)
         {
             TrackPosition = TrackPosition.GetOpposite();
         }
-        GD.Print(TrackPosition);
 
         _lastDirectionFieldInfluence = lastDirectionFieldInfluence;
     }
@@ -116,36 +116,69 @@ public partial class Enemy : CharacterBody3D
 		if (enemy == this)
 		{
 			return;
-		}
-		if (enemy.Type == GhostType.Blue && Type == GhostType.Blue)
-		{
-            var dotProct = enemy.Direction.Dot(Direction);
-			if (dotProct < 0)
+        }
+        if (enemy.Type == GhostType.Blue && Type == GhostType.Blue)
+        {
+			if (IsCollisionFuseable(enemy))
 			{
-				FuseWith(enemy);
+				BlueFusion(enemy);
 			}
-		}
+        }
+        if (enemy.Type == GhostType.GreenPlus && Type == GhostType.RedPlus)
+        {
+            if (IsCollisionFuseable(enemy))
+            {
+                RedGreenFusion(enemy);
+            }
+        }
     }
 
-	private void FuseWith(Enemy enemy)
+	private bool IsCollisionFuseable(Enemy enemy)
 	{
-		if (HasFused || enemy.HasFused)
-		{
-			return;
-		}
-		QueueFree();
-		enemy.QueueFree();
+        var dotProct = enemy.Direction.Dot(Direction);
+		return dotProct < 0;
+    }
 
-		var position = (Position + enemy.Position) / 2;
-		var red = redPackedScene.Instantiate<Enemy>();
-		red.Position = position;
-		red.Direction = enemy.Direction;
-		var green = greenPackedScene.Instantiate<Enemy>();
-		green.Position = Position;
-		green.Direction = Direction;
+    private void BlueFusion(Enemy enemy)
+    {
+        if (HasFused || enemy.HasFused)
+        {
+            return;
+        }
+        QueueFree();
+        enemy.QueueFree();
+
+        var position = (Position + enemy.Position) / 2;
+        var red = redPackedScene.Instantiate<Enemy>();
+        red.Position = position;
+        red.Direction = enemy.Direction;
+        red.TrackPosition = enemy.TrackPosition.GetOpposite();
+        var green = greenPackedScene.Instantiate<Enemy>();
+        green.Position = Position;
+        green.Direction = Direction;
+        green.TrackPosition = TrackPosition.GetOpposite();
 
         GetParent().AddChild(red, true);
         GetParent().AddChild(green, true);
-		HasFused = true;
+        HasFused = true;
+    }
+
+    private void RedGreenFusion(Enemy enemy)
+    {
+        if (HasFused || enemy.HasFused)
+        {
+            return;
+        }
+        QueueFree();
+        enemy.QueueFree();
+
+        var position = (Position + enemy.Position) / 2;
+        var purple = purplePackedScene.Instantiate<Enemy>();
+        purple.Position = position;
+        purple.Direction = enemy.Basis.x;
+        purple.TrackPosition = enemy.TrackPosition.GetOpposite();
+
+        GetParent().AddChild(purple, true);
+        HasFused = true;
     }
 }

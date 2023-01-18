@@ -8,3 +8,6 @@ Type = 3
 Speed = 10.0
 
 [node name="ghost" parent="." index="1" instance=ExtResource("2_1pxnk")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3"]
+light_color = Color(1, 0.172549, 0.105882, 1)

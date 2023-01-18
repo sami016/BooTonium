@@ -10,5 +10,8 @@ albedo_color = Color(0.294118, 1, 0.352941, 1)
 [node name="Icosphere" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_p65b3")
 
+[node name="eyes1" parent="." index="1"]
+visible = false
+
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="4"]
 light_color = Color(0.439216, 1, 0.333333, 1)

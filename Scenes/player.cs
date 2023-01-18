@@ -53,9 +53,10 @@ public partial class player : CharacterBody3D
 		}
 
 		Velocity = velocity;
-        if (Velocity.LengthSquared() > 0.01)
+		var nonVerticalVelocity = new Vector3(Velocity.x, 0, Velocity.z);
+        if (nonVerticalVelocity.LengthSquared() > 0.01)
         {
-            LookAt(new Vector3(Position.x + Velocity.x, Position.y, Position.z + Velocity.z));
+			LookAtFromPosition(GlobalPosition, new Vector3(GlobalPosition.x + nonVerticalVelocity.x, GlobalPosition.y, GlobalPosition.z + nonVerticalVelocity.z));
         }
         MoveAndSlide();
     }

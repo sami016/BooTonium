@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://dby3vymmu1oic"]
+
+[ext_resource type="Script" path="res://Scenes/Placements/Reflector.cs" id="1_d1l6c"]
+[ext_resource type="Texture2D" uid="uid://bqxwlffjr2d23" path="res://Textures/clockwise-rotation.png" id="2_l870t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wkpjm"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dev5y"]
+transparency = 1
+albedo_color = Color(0.356863, 1, 0.54902, 0.266667)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pegv1"]
+material = SubResource("StandardMaterial3D_dev5y")
+size = Vector3(2, 4, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gs84"]
+transparency = 1
+albedo_texture = ExtResource("2_l870t")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iywnw"]
+material = SubResource("StandardMaterial3D_0gs84")
+size = Vector2(4, 4)
+
+[node name="magnet" type="Node3D"]
+script = ExtResource("1_d1l6c")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_wkpjm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+mesh = SubResource("BoxMesh_pegv1")
+
+[node name="icon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
+mesh = SubResource("PlaneMesh_iywnw")

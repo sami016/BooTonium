@@ -1,9 +1,16 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public partial class Accelerator : Node3D
 {
-    private static PackedScene BluePackedScene = ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/blue.tscn");
+    private static IDictionary<GhostType, PackedScene> AcceleratorMap = new Dictionary<GhostType, PackedScene>()
+    {
+        { GhostType.White, ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/blue.tscn") },
+        { GhostType.Green, ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/green_plus.tscn") },
+        { GhostType.Red, ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/red_plus.tscn") },
+    };
 
     public override void _Ready()
     {
@@ -15,18 +22,19 @@ public partial class Accelerator : Node3D
     {
         if (body is Enemy enemy)
         {
-            if (enemy.Type != GhostType.White)
+            if (!AcceleratorMap.ContainsKey(enemy.Type)
+                || enemy.Age < 0.5)
             {
                 return;
             }
 
-            if ((GlobalTransform.basis.z).Dot(enemy.Direction) < 0)
+            if ((GlobalTransform.basis.z).Dot(enemy.Direction) < 0.95)
             {
                 return;
             }
 
 
-            var upgraded = BluePackedScene.Instantiate<Enemy>();
+            var upgraded = AcceleratorMap[enemy.Type].Instantiate<Enemy>();
             upgraded.Direction = enemy.Direction;
             upgraded.Position = enemy.Position;
             upgraded.TrackPosition = enemy.TrackPosition;

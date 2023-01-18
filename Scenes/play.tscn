@@ -1,20 +1,85 @@
-[gd_scene load_steps=6 format=3 uid="uid://cexjuyc8jjdui"]
+[gd_scene load_steps=9 format=3 uid="uid://cexjuyc8jjdui"]
 
+[ext_resource type="Script" path="res://Scenes/Play.cs" id="1_7f2c6"]
 [ext_resource type="PackedScene" uid="uid://dy1mjv3ngx4b6" path="res://Scenes/cell.tscn" id="1_dfj3w"]
 [ext_resource type="PackedScene" uid="uid://c6j256uob6dht" path="res://Scenes/player.tscn" id="1_hluua"]
 [ext_resource type="Script" path="res://Scenes/player.cs" id="2_g8k1q"]
+[ext_resource type="PackedScene" uid="uid://byumrtuu4l6y6" path="res://Scenes/UI/item_select.tscn" id="2_jla7h"]
+[ext_resource type="Theme" uid="uid://d4fbuabxma8mx" path="res://Scenes/UI/default.tres" id="3_mstm8"]
 [ext_resource type="Script" path="res://Scenes/Reactor.cs" id="4_mvd3p"]
 
 [sub_resource type="Environment" id="Environment_a7mry"]
+background_mode = 1
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 
 [node name="play" type="Node3D"]
+script = ExtResource("1_7f2c6")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 45.1743, 42.1926)
 projection = 1
 size = 50.0
+
+[node name="ui" type="CanvasLayer" parent="camera"]
+
+[node name="ColorRect3" type="ColorRect" parent="camera/ui"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 54.0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="camera/ui"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_right = -2.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="camera/ui"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="camera/ui"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 11.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="level_name2" type="Label" parent="camera/ui"]
+offset_left = 74.0
+offset_right = 1086.0
+offset_bottom = 44.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+
+[node name="level_name" type="Label" parent="camera/ui"]
+offset_left = 67.0
+offset_top = 13.0
+offset_right = 1079.0
+offset_bottom = 57.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("3_mstm8")
+theme_override_font_sizes/font_size = 25
+text = "\"Hello world\""
+
+[node name="item_select" parent="camera/ui" node_paths=PackedStringArray("PlayerBuildPlacement") instance=ExtResource("2_jla7h")]
+offset_right = 375.0
+PlayerBuildPlacement = NodePath("../../../player/Build")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a7mry")
@@ -105,3 +170,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 32)
 
 [node name="reactor" type="Node" parent="."]
 script = ExtResource("4_mvd3p")
+
+[editable path="player"]

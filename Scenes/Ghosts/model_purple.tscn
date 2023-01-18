@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://ypau6ltw58x3"]
+
+[ext_resource type="PackedScene" uid="uid://bewxoblt68gar" path="res://Models/ghost.blend" id="1_dusi6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3m8q"]
+albedo_color = Color(0.631373, 0.0980392, 1, 1)
+emission_enabled = true
+emission = Color(0.631373, 0.0980392, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nsvt"]
+emission_enabled = true
+emission = Color(0.937255, 0.960784, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihl38"]
+emission_enabled = true
+emission = Color(0.937255, 0.960784, 1, 1)
+
+[node name="ghost" instance=ExtResource("1_dusi6")]
+
+[node name="Icosphere" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_e3m8q")
+
+[node name="eyes1" parent="." index="1"]
+visible = false
+
+[node name="eyes" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5nsvt")
+
+[node name="mouth" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ihl38")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="4"]
+light_color = Color(0.737255, 0.337255, 0.886275, 1)
+light_energy = 5.0
+omni_range = 10.0

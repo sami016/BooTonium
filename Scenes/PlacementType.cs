@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 public enum PlacementType
 {
+    None = 0,
+    Magnet = 1,
+    Accelerator = 2,
+    Reflector = 3,
     SpeedBooster,
     Blaster,
-    Magnet,
-    Accelerator
 }

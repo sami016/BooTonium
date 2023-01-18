@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://424qxiest3qu"]
+
+[ext_resource type="AudioStream" uid="uid://du6c66yq8c6iq" path="res://Sound/trap-the-beat-by-frank-schroeter-from-filmmusic-io.mp3" id="1_6cebl"]
+[ext_resource type="Script" path="res://Scenes/music.cs" id="1_a2tev"]
+
+[node name="music" type="Node"]
+script = ExtResource("1_a2tev")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_6cebl")
+autoplay = true

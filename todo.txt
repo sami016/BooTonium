@@ -2,3 +2,10 @@
  - Create helper function for getting level manager.
  - Capitalise all class names.
 
+ Music attribution:
+
+The following music was used for this media project:
+Music: Trap The Beat by Frank Schroeter
+Free download: https://filmmusic.io/song/8053-trap-the-beat
+License (CC BY 4.0): https://filmmusic.io/standard-license
+

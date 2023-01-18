@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://2adi2jtoq21d" path="res://Scenes/water.tscn" id="5_m0xxo"]
 
 [node name="play" instance=ExtResource("1_7s8gh")]
+LevelName = "The deathraction experiment"
 
 [node name="configuration" type="Node3D" parent="." index="5"]
 
@@ -82,3 +83,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 40)
 
 [node name="water" parent="configuration" index="23" instance=ExtResource("5_m0xxo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24, 0, 32)
+
+[editable path="player"]

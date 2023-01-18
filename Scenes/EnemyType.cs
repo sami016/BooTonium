@@ -9,5 +9,8 @@ public enum GhostType
     White,
     Blue,
     Green,
-    Red
+    Red,
+    GreenPlus,
+    RedPlus,
+    Purple
 }

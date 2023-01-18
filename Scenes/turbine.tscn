@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnnh38vqiifps"]
+
+[ext_resource type="Script" path="res://Scenes/Turbine.cs" id="1_6ynui"]
+[ext_resource type="PackedScene" uid="uid://bnc1jne8ex2om" path="res://Models/turbine.blend" id="2_ko78j"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s62aj"]
+height = 4.0
+radius = 1.5
+
+[node name="turbine" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("1_6ynui")
+
+[node name="turbine" parent="." instance=ExtResource("2_ko78j")]
+transform = Transform3D(0.6, 0, 0, 0, -0.6, 9.05975e-08, 0, -9.05975e-08, -0.6, 0, 0.6, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_s62aj")

@@ -12,8 +12,6 @@ public partial class Booster : Node3D
 
 	private void OnBodyEntered(Node3D body)
     {
-        GD.Print("body entered");
-		GD.Print(body.GetPath());
 		if (body is player ply)
 		{
 			ply.Stats.Apply(new StatEffect

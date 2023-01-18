@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1gdn0050fd8n"]
+
+[ext_resource type="PackedScene" uid="uid://b1uh13pww12kj" path="res://Scenes/Ghosts/enemy.tscn" id="1_mshl2"]
+[ext_resource type="PackedScene" uid="uid://dlvc2lyrryldn" path="res://Scenes/Ghosts/model_green.tscn" id="2_2dibm"]
+
+[node name="enemy" instance=ExtResource("1_mshl2")]
+Type = 4
+Speed = 15.0
+
+[node name="ghost" parent="." index="1" instance=ExtResource("2_2dibm")]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3"]
+light_color = Color(0.129412, 1, 0.14902, 1)
+light_energy = 3.0

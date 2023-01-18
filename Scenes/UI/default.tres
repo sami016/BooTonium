@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://d4fbuabxma8mx"]
+
+[ext_resource type="FontFile" uid="uid://b88ttie5ckl6q" path="res://Fonts/RubikMonoOne-Regular.ttf" id="1_d7ern"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdgi2"]
+bg_color = Color(0, 0, 0, 1)
+
+[resource]
+Button/fonts/font = ExtResource("1_d7ern")
+Button/styles/normal = SubResource("StyleBoxFlat_hdgi2")
+Label/fonts/font = ExtResource("1_d7ern")
+test/fonts/f = ExtResource("1_d7ern")

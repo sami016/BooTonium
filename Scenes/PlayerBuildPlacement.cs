@@ -6,6 +6,7 @@ public partial class PlayerBuildPlacement : Node
 	public Placement Target { get; set; }
     public PlacementType Type { get; set; } = PlacementType.Magnet;
 
+    public event Action TypeChanged;
 
     public override void _Ready()
 	{
@@ -20,6 +21,10 @@ public partial class PlayerBuildPlacement : Node
         if (Input.IsActionJustPressed("item_2"))
         {
             SwitchItem(PlacementType.Accelerator);
+        }
+        if (Input.IsActionJustPressed("item_3"))
+        {
+            SwitchItem(PlacementType.Reflector);
         }
         if (Input.IsActionJustPressed("use")
             && CanPlace())
@@ -46,6 +51,7 @@ public partial class PlayerBuildPlacement : Node
     private void SwitchItem(PlacementType placementType)
     {
         Type = placementType;
+        TypeChanged?.Invoke();
     }
 
     private bool CanPlace()

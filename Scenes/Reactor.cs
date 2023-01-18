@@ -6,29 +6,34 @@ using System.Linq;
 
 public partial class Reactor : Node
 {
-	private Water[] _waterNodes;
+    private Water[] _waterNodes;
+    private Turbine[] _turbineNodes;
 
-	[Export] public double Health { get; set; } = 1.0;
+    [Export] public double Health { get; set; } = 1.0;
 
 
 	public override void _Ready()
-	{
-		_waterNodes = GetWaterNodes()
-			.ToArray();
-	}
+    {
+        _waterNodes = GetWaterNodes()
+            .ToArray();
+        _turbineNodes = GetTurbineNodes()
+            .ToArray();
+    }
 
 	public override void _Process(double delta)
 	{
-		foreach (var a in GetParent()
-            .GetChildren())
-		{
-			GD.Print(a.GetPath());
-		}
     }
 
     public void CheckVictoryCondition()
     {
-		CheckWaterAbsorption();
+        var win = true;
+        win &= CheckWaterAbsorption();
+        win &= CheckTurbinesSpinning();
+
+        if (win)
+        {
+            Win();
+        }
     }
 
     public void ApplyDamage(double damage)
@@ -38,34 +43,53 @@ public partial class Reactor : Node
 		CheckHealthDeathCondition();
     }
 
-	private IEnumerable<Water> GetWaterNodes()
-	{
-		return GetParent()
-			.GetNode("configuration")
-			.GetChildren()
-			.Where(x => x.Name.ToString().StartsWith("water"))
-			.Cast<Water>()
-			.Where(x => x != null);
-	}
+    private IEnumerable<Water> GetWaterNodes()
+    {
+        return GetParent()
+            .GetNode("configuration")
+            .GetChildren()
+            .Where(x => x.Name.ToString().StartsWith("water"))
+            .Cast<Water>()
+            .Where(x => x != null);
+    }
 
-    private void CheckWaterAbsorption()
-	{
-		var win = true;
-		foreach (var water in GetWaterNodes())
-		{
-			if (water.Remaining > 0)
-			{
-				win = false;
-			}
-		}
+    private IEnumerable<Turbine> GetTurbineNodes()
+    {
+        return GetParent()
+            .GetNode("configuration")
+            .GetChildren()
+            .Where(x => x.Name.ToString().StartsWith("turbine"))
+            .Cast<Turbine>()
+            .Where(x => x != null);
+    }
 
-		if (win)
-		{
-			Win();
-		}
-	}
+    private bool CheckWaterAbsorption()
+    {
+        var win = true;
+        foreach (var water in _waterNodes)
+        {
+            if (water.Remaining > 0)
+            {
+                win = false;
+            }
+        }
+        return win;
+    }
 
-	private void CheckHealthDeathCondition()
+    private bool CheckTurbinesSpinning()
+    {
+        var win = true;
+        foreach (var turbine in _turbineNodes)
+        {
+            if (!turbine.Spinning)
+            {
+                win = false;
+            }
+        }
+        return win;
+    }
+
+    private void CheckHealthDeathCondition()
 	{
 		if (Health <= 0)
 		{
