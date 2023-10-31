@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://21olnvcjxwbw"]
+[gd_scene load_steps=14 format=3 uid="uid://21olnvcjxwbw"]
 
 [ext_resource type="Texture2D" uid="uid://4hd53ynvwan8" path="res://Textures/Title.png" id="1_hk247"]
 [ext_resource type="Texture2D" uid="uid://dlbehfow6lo8y" path="res://Textures/paper_render_1.png" id="2_a6rd1"]
 [ext_resource type="Script" path="res://Scenes/LinkButton.cs" id="2_eu6bg"]
 [ext_resource type="Theme" uid="uid://d4fbuabxma8mx" path="res://Scenes/UI/default.tres" id="3_elyoj"]
+[ext_resource type="Script" path="res://Scenes/UI/IconRandomizer.cs" id="3_u3f38"]
+[ext_resource type="Texture2D" uid="uid://6n6komfu5bv0" path="res://Textures/paper_render_2.png" id="4_do8ff"]
+[ext_resource type="Texture2D" uid="uid://d2lncxhpaebgr" path="res://Textures/paper_render_3.png" id="5_uspf6"]
+[ext_resource type="Script" path="res://Scenes/QuitButton.cs" id="5_wdg2x"]
+[ext_resource type="Texture2D" uid="uid://ctnet15r13k1o" path="res://Textures/paper_render_4.png" id="6_3u56m"]
+[ext_resource type="Texture2D" uid="uid://h8q0hshba4p1" path="res://Textures/paper_render_5.png" id="7_f7aod"]
+[ext_resource type="Texture2D" uid="uid://bn456l5fr2f5i" path="res://Textures/paper_render_6.png" id="8_67oj1"]
+[ext_resource type="Texture2D" uid="uid://chafko51ixb5j" path="res://Textures/jam1.png" id="9_2omnf"]
+[ext_resource type="Texture2D" uid="uid://sjkkhf667ym1" path="res://Textures/jam2.png" id="10_raqcc"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -12,19 +21,14 @@ anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = -2649.0
 offset_top = -749.0
 offset_right = 1668.0
 offset_bottom = 2009.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Title" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -36,7 +40,7 @@ offset_bottom = 407.0
 grow_horizontal = 2
 texture = ExtResource("1_hk247")
 
-[node name="TexturePaper" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -48,70 +52,120 @@ offset_bottom = 596.0
 grow_horizontal = 2
 texture = ExtResource("2_a6rd1")
 expand_mode = 2
+script = ExtResource("3_u3f38")
+Textures = [ExtResource("2_a6rd1"), ExtResource("4_do8ff"), ExtResource("5_uspf6"), ExtResource("6_3u56m"), ExtResource("7_f7aod"), ExtResource("8_67oj1")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Icon2" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -473.0
-offset_top = 387.0
-offset_right = 473.0
-offset_bottom = 492.0
+offset_left = -200.0
+offset_top = 189.0
+offset_right = 137.0
+offset_bottom = 279.0
 grow_horizontal = 2
+texture = ExtResource("9_2omnf")
+expand_mode = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Icon3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 141.0
+offset_top = 190.0
+offset_right = 231.0
+offset_bottom = 280.0
+grow_horizontal = 2
+texture = ExtResource("10_raqcc")
+expand_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = 310.0
+offset_right = 473.0
+offset_bottom = 372.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level1" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_elyoj")
-text = "L1"
+text = " L1 "
 script = ExtResource("2_eu6bg")
 LoadScene = "res://Scenes/Levels/Level1.tscn"
+LevelIndex = 0
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="Level2" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_elyoj")
-text = "L2"
+text = " L2 "
 script = ExtResource("2_eu6bg")
 LoadScene = "res://Scenes/Levels/Level2.tscn"
+LevelIndex = 1
 
-[node name="Button3" type="Button" parent="HBoxContainer"]
+[node name="Level3" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_elyoj")
-text = "L3"
+text = " L3 "
 script = ExtResource("2_eu6bg")
 LoadScene = "res://Scenes/Levels/Level3.tscn"
+LevelIndex = 2
 
-[node name="Button4" type="Button" parent="HBoxContainer"]
+[node name="Level4" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_elyoj")
-text = "L4"
+text = " L4 "
 script = ExtResource("2_eu6bg")
 LoadScene = "res://Scenes/Levels/Level4.tscn"
+LevelIndex = 3
 
-[node name="Button5" type="Button" parent="HBoxContainer"]
+[node name="Level5" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_elyoj")
-text = "L5"
+text = " L5 "
 script = ExtResource("2_eu6bg")
 LoadScene = "res://Scenes/Levels/Level5.tscn"
+LevelIndex = 4
 
-[node name="Button6" type="Button" parent="HBoxContainer"]
+[node name="Level6" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_elyoj")
-text = "L6"
+text = " L6 "
 script = ExtResource("2_eu6bg")
 LoadScene = "res://Scenes/Levels/Level6.tscn"
+LevelIndex = 5
 
-[node name="Button7" type="Button" parent="HBoxContainer"]
+[node name="Level7" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_elyoj")
-text = "L7"
+text = " L7 "
 script = ExtResource("2_eu6bg")
 LoadScene = "res://Scenes/Levels/Level7.tscn"
+LevelIndex = 6
 
 [node name="ButtonSB" type="Button" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("3_elyoj")
-text = "SB"
+text = " SB "
 script = ExtResource("2_eu6bg")
 LoadScene = "res://Scenes/Levels/LevelSandbox.tscn"
+LevelIndex = 7
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = -469.0
+offset_top = 469.0
+offset_right = -6.0
+offset_bottom = 554.0
+theme = ExtResource("3_elyoj")
+text = "Quit"
+script = ExtResource("5_wdg2x")

@@ -16,7 +16,7 @@ public partial class Filter : Area3D
         {
             if (enemy.Type != GhostType)
             {
-                enemy.QueueFree();
+                enemy.Explode();
             }
         }
     }

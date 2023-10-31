@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dign6cxgfpjq6"]
+
+[ext_resource type="PackedScene" uid="uid://bewxoblt68gar" path="res://Models/ghost.blend" id="1_0hqh6"]
+
+[node name="ghost" instance=ExtResource("1_0hqh6")]
+
+[node name="eyes1" parent="." index="1"]
+visible = false

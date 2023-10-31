@@ -8,9 +8,16 @@ public partial class Reactor : Node
 {
     private Water[] _waterNodes;
     private Turbine[] _turbineNodes;
+    private bool _finished = false;
 
     [Export] public double Health { get; set; } = 1.0;
+    public double CompletePercentage { get; set; } = 0;
+    [Export] public int LevelIndex { get; set; } = 0;
 
+    [Export] public Control WinWindow { get; set; }
+    [Export] public Control LossWindow { get; set; }
+
+    public event Action CompletePercentageChanged;
 
 	public override void _Ready()
     {
@@ -21,7 +28,12 @@ public partial class Reactor : Node
     }
 
 	public override void _Process(double delta)
-	{
+    {
+        if (_finished)
+        {
+            return;
+        }
+        UpdateProgress();
     }
 
     public void CheckVictoryCondition()
@@ -36,8 +48,43 @@ public partial class Reactor : Node
         }
     }
 
+    private void UpdateProgress()
+    {
+        if (_finished)
+        {
+            return;
+        }
+        var numerator = 0.0;
+        var denominator = 0.0;
+
+        foreach (var node in _turbineNodes)
+        {
+            numerator += Math.Min(node.RotationRate, 80.0);
+            denominator += 80.0;
+        }
+        foreach (var node in _waterNodes)
+        {
+            numerator += Math.Min(node.GhostsReceived, node.GhostsRequired);
+            denominator += node.GhostsRequired;
+        }
+
+        if (denominator == 0)
+        {
+            CompletePercentage = 0;
+        }
+        else
+        {
+            CompletePercentage = 100 * numerator / denominator;
+        }
+        CompletePercentageChanged?.Invoke();
+    }
+
     public void ApplyDamage(double damage)
     {
+        if (_finished)
+        {
+            return;
+        }
 		Health -= damage;
 		Health = Math.Max(Health, 0);
 		CheckHealthDeathCondition();
@@ -99,15 +146,22 @@ public partial class Reactor : Node
 
 	private void Win()
     {
-        var levelManager = GetTree().Root
-            .GetNode<LevelManager>("./LevelManager");
-        levelManager.SetActiveScene("res://Scenes/menu.tscn");
+        _finished = true;
+        WinManager.LevelWasWon(LevelIndex)
+            .ContinueWith(x =>
+            {
+                CallDeferred("WinTransition");
+            });
+    }
+
+    private void WinTransition()
+    {
+        WinWindow.Visible = true;
     }
 
 	private void Die()
 	{
-        var levelManager = GetTree().Root
-            .GetNode<LevelManager>("./LevelManager");
-        levelManager.SetActiveScene("res://Scenes/menu.tscn");
+        _finished = true;
+        LossWindow.Visible = true;
     }
 }

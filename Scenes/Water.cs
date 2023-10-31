@@ -41,7 +41,7 @@ public partial class Water : StaticBody3D
     {
         _coolCounter = 0;
         GhostsReceived++;
-        enemy.QueueFree();
+        enemy.Explode();
         _reactor.CheckVictoryCondition();
     }
 

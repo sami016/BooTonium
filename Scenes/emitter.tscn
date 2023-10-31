@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://fbn3lcs57j3v"]
+[gd_scene load_steps=11 format=3 uid="uid://fbn3lcs57j3v"]
 
 [ext_resource type="Script" path="res://Scenes/Emitter.cs" id="1_r21tv"]
 [ext_resource type="PackedScene" uid="uid://chigcosxidykn" path="res://Models/grave.blend" id="2_wpl1n"]
@@ -21,6 +21,9 @@ data = PackedVector3Array(4, 0, 4, -4, 0, 4, 4, 0, -4, -4, 0, 4, -4, 0, -4, 4, 0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avbgs"]
 transparency = 1
 albedo_texture = ExtResource("3_oh4ro")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cyfse"]
+size = Vector3(4, 4, 4)
 
 [node name="emitter" type="StaticBody3D"]
 script = ExtResource("1_r21tv")
@@ -45,3 +48,10 @@ material = SubResource("FogMaterial_d2rcm")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.39769, 3, 0)
 mesh = SubResource("PlaneMesh_vypbf")
 surface_material_override/0 = SubResource("StandardMaterial3D_avbgs")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_cyfse")

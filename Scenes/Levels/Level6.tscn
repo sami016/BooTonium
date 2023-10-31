@@ -31,61 +31,61 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0,
 [node name="chamber2" parent="configuration" index="3" instance=ExtResource("3_cfv3v")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, -8)
 
-[node name="chamber4" parent="configuration" index="4" instance=ExtResource("3_cfv3v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 40)
-
-[node name="water" parent="configuration" index="5" instance=ExtResource("4_uckdg")]
+[node name="water" parent="configuration" index="4" instance=ExtResource("4_uckdg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.0739, 0, 24.0024)
 
-[node name="water2" parent="configuration" index="6" instance=ExtResource("4_uckdg")]
+[node name="water2" parent="configuration" index="5" instance=ExtResource("4_uckdg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -23.9261, 0, 24.0024)
 
-[node name="filling" parent="configuration" index="7" instance=ExtResource("3_q8d8n")]
+[node name="filling" parent="configuration" index="6" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 8)
 
-[node name="filling3" parent="configuration" index="8" instance=ExtResource("3_q8d8n")]
+[node name="filling3" parent="configuration" index="7" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="filling13" parent="configuration" index="9" instance=ExtResource("3_q8d8n")]
+[node name="filling13" parent="configuration" index="8" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
-[node name="filling14" parent="configuration" index="10" instance=ExtResource("3_q8d8n")]
+[node name="filling14" parent="configuration" index="9" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -8)
 
-[node name="filling15" parent="configuration" index="11" instance=ExtResource("3_q8d8n")]
+[node name="filling15" parent="configuration" index="10" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -8)
 
-[node name="filling4" parent="configuration" index="12" instance=ExtResource("3_q8d8n")]
+[node name="filling4" parent="configuration" index="11" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
 
-[node name="filling8" parent="configuration" index="13" instance=ExtResource("3_q8d8n")]
+[node name="filling8" parent="configuration" index="12" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32)
 
-[node name="filling12" parent="configuration" index="14" instance=ExtResource("3_q8d8n")]
+[node name="filling12" parent="configuration" index="13" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 32)
 
-[node name="filling9" parent="configuration" index="15" instance=ExtResource("3_q8d8n")]
+[node name="filling9" parent="configuration" index="14" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 32)
 
-[node name="filling10" parent="configuration" index="16" instance=ExtResource("3_q8d8n")]
+[node name="filling10" parent="configuration" index="15" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 32)
 
-[node name="filling11" parent="configuration" index="17" instance=ExtResource("3_q8d8n")]
+[node name="filling11" parent="configuration" index="16" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 32)
 
-[node name="filling5" parent="configuration" index="18" instance=ExtResource("3_q8d8n")]
+[node name="filling5" parent="configuration" index="17" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 16)
 
-[node name="filling6" parent="configuration" index="19" instance=ExtResource("3_q8d8n")]
+[node name="filling6" parent="configuration" index="18" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
 
-[node name="filling7" parent="configuration" index="20" instance=ExtResource("3_q8d8n")]
+[node name="filling7" parent="configuration" index="19" instance=ExtResource("3_q8d8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
 
-[node name="filter" parent="configuration" index="21" instance=ExtResource("6_xyccm")]
+[node name="filter" parent="configuration" index="20" instance=ExtResource("6_xyccm")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 2, 24)
 
-[node name="filter2" parent="configuration" index="22" instance=ExtResource("7_k7i46")]
+[node name="filter2" parent="configuration" index="21" instance=ExtResource("7_k7i46")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 2, 24)
+
+[node name="reactor" parent="." index="6"]
+LevelIndex = 5
 
 [editable path="player"]

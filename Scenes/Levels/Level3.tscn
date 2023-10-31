@@ -7,6 +7,10 @@
 
 [node name="play" instance=ExtResource("1_8be7g")]
 LevelName = "Spinning in the grave"
+ObjectiveType = 1
+
+[node name="reactor" parent="." index="5"]
+LevelIndex = 2
 
 [node name="configuration" type="Node3D" parent="." index="6"]
 

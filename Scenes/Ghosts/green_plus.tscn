@@ -1,7 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://1gdn0050fd8n"]
+[gd_scene load_steps=6 format=3 uid="uid://1gdn0050fd8n"]
 
 [ext_resource type="PackedScene" uid="uid://b1uh13pww12kj" path="res://Scenes/Ghosts/enemy.tscn" id="1_mshl2"]
 [ext_resource type="PackedScene" uid="uid://dlvc2lyrryldn" path="res://Scenes/Ghosts/model_green.tscn" id="2_2dibm"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1awvq"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+spread = 63.49
+gravity = Vector3(0, -0.1, 0)
+radial_accel_min = 1.0
+radial_accel_max = 2.0
+scale_min = 0.1
+scale_max = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elqfv"]
+albedo_color = Color(1, 0, 0.0352941, 1)
+emission_enabled = true
+emission = Color(1, 0, 0.0156863, 1)
+emission_energy_multiplier = 0.32
+
+[sub_resource type="SphereMesh" id="SphereMesh_prvkk"]
+material = SubResource("StandardMaterial3D_elqfv")
 
 [node name="enemy" instance=ExtResource("1_mshl2")]
 Type = 4
@@ -13,3 +32,9 @@ transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="3"]
 light_color = Color(0.129412, 1, 0.14902, 1)
 light_energy = 3.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="4"]
+amount = 30
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_1awvq")
+draw_pass_1 = SubResource("SphereMesh_prvkk")

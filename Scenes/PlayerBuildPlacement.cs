@@ -86,6 +86,7 @@ public partial class PlayerBuildPlacement : Node
     private void Place()
     {
         var playerRotationY = (GetParent() as player).RotationDegrees.y;
+        playerRotationY = (float)Math.Round(playerRotationY / 90f) * 90f;
         Target.Place(Type, playerRotationY);
     }
 

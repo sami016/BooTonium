@@ -6,6 +6,7 @@ public partial class Enemy : CharacterBody3D
     private static PackedScene redPackedScene = ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/red.tscn");
     private static PackedScene greenPackedScene = ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/green.tscn");
     private static PackedScene purplePackedScene = ResourceLoader.Load<PackedScene>("res://Scenes/Ghosts/purple.tscn");
+    private static PackedScene explosionScene = ResourceLoader.Load<PackedScene>("res://Scenes/explosion.tscn");
 
     [Export] public GhostType Type { get; set; }
 	[Export] public float Speed { get; set; } = 3f;
@@ -42,7 +43,7 @@ public partial class Enemy : CharacterBody3D
 	public override void _Process(double delta)
 	{
 		Age += (float)delta;
-	}
+    }
 
 	public override void _PhysicsProcess(double delta)
     {
@@ -180,5 +181,25 @@ public partial class Enemy : CharacterBody3D
 
         GetParent().AddChild(purple, true);
         HasFused = true;
+    }
+
+    private void ExplosionEffect()
+    {
+
+        for (var i = 0; i < 10; i++)
+        {
+            var explosion = explosionScene.Instantiate<Node3D>();
+            explosion.Position = Position + Vector3.Left * (float)GD.RandRange(-0.5, 0.5) + Vector3.Forward * (float)GD.RandRange(-0.5, 0.5);
+            explosion.Scale = Vector3.One * (float)GD.RandRange(-0.5, 0.5);
+            GetParent().AddChild(explosion, true);
+        }
+    }
+
+    public void Explode()
+    {
+        var explosion = explosionScene.Instantiate<Node3D>();
+        explosion.Position = Position;
+        GetParent().AddChild(explosion, true);
+        QueueFree();
     }
 }

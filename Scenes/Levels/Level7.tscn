@@ -9,6 +9,9 @@
 [node name="play" instance=ExtResource("1_67mw6")]
 LevelName = "High-energy poltergeist collider"
 
+[node name="reactor" parent="." index="5"]
+LevelIndex = 6
+
 [node name="configuration" type="Node3D" parent="." index="6"]
 
 [node name="emitter2" parent="configuration" index="0" instance=ExtResource("2_nj7rn")]

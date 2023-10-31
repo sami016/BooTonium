@@ -100,4 +100,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 40)
 
 [node name="filter" parent="configuration" index="26" instance=ExtResource("6_myi7y")]
 
+[node name="reactor" parent="." index="6"]
+LevelIndex = 3
+
 [editable path="player"]

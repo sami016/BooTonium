@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cxfva3syhffmd" path="res://Scenes/filter_blue.tscn" id="6_8yl3n"]
 
 [node name="play" instance=ExtResource("1_67mw6")]
+LevelName = "Fantom Energy"
+ObjectiveType = 1
+
+[node name="reactor" parent="." index="5"]
+LevelIndex = 4
 
 [node name="configuration" type="Node3D" parent="." index="6"]
 

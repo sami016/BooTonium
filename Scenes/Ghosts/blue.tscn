@@ -1,10 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5xhm0iopnxhd"]
+[gd_scene load_steps=6 format=3 uid="uid://c5xhm0iopnxhd"]
 
 [ext_resource type="PackedScene" uid="uid://b1uh13pww12kj" path="res://Scenes/Ghosts/enemy.tscn" id="1_xmtp2"]
 [ext_resource type="PackedScene" uid="uid://dr67ahvea1mnx" path="res://Scenes/Ghosts/model_blue.tscn" id="2_rhduy"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tnbjg"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+spread = 63.49
+gravity = Vector3(0, -0.1, 0)
+radial_accel_min = 1.0
+radial_accel_max = 2.0
+scale_min = 0.1
+scale_max = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwr0f"]
+albedo_color = Color(0, 0.384314, 1, 1)
+emission_enabled = true
+emission = Color(0.0470588, 0.443137, 1, 1)
+emission_energy_multiplier = 0.32
+
+[sub_resource type="SphereMesh" id="SphereMesh_33jbu"]
+material = SubResource("StandardMaterial3D_rwr0f")
 
 [node name="enemy" instance=ExtResource("1_xmtp2")]
 Type = 1
 Speed = 6.0
 
 [node name="ghost" parent="." index="1" instance=ExtResource("2_rhduy")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="3"]
+amount = 30
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_tnbjg")
+draw_pass_1 = SubResource("SphereMesh_33jbu")

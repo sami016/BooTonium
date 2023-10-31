@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cexjuyc8jjdui"]
+[gd_scene load_steps=13 format=3 uid="uid://cexjuyc8jjdui"]
 
 [ext_resource type="Script" path="res://Scenes/Play.cs" id="1_7f2c6"]
 [ext_resource type="PackedScene" uid="uid://dy1mjv3ngx4b6" path="res://Scenes/cell.tscn" id="1_dfj3w"]
@@ -6,10 +6,16 @@
 [ext_resource type="Script" path="res://Scenes/player.cs" id="2_g8k1q"]
 [ext_resource type="PackedScene" uid="uid://byumrtuu4l6y6" path="res://Scenes/UI/item_select.tscn" id="2_jla7h"]
 [ext_resource type="Theme" uid="uid://d4fbuabxma8mx" path="res://Scenes/UI/default.tres" id="3_mstm8"]
+[ext_resource type="PackedScene" uid="uid://clotogrj5ccbt" path="res://Scenes/UI/level_progress.tscn" id="4_0123i"]
 [ext_resource type="Script" path="res://Scenes/Reactor.cs" id="4_mvd3p"]
+[ext_resource type="Theme" uid="uid://b37u7q7rlduod" path="res://Scenes/UI/black.tres" id="5_mj6dk"]
+[ext_resource type="Script" path="res://Scenes/LinkButton.cs" id="6_ublex"]
+[ext_resource type="Script" path="res://Scenes/RestartLevelButton.cs" id="7_7jfko"]
 
 [sub_resource type="Environment" id="Environment_a7mry"]
 background_mode = 1
+ssao_enabled = true
+ssil_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 
@@ -17,7 +23,7 @@ volumetric_fog_density = 0.0
 script = ExtResource("1_7f2c6")
 
 [node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 45.1743, 42.1926)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 45.174, 42.193)
 projection = 1
 size = 50.0
 
@@ -58,14 +64,6 @@ offset_bottom = 11.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 1)
 
-[node name="level_name2" type="Label" parent="camera/ui"]
-offset_left = 74.0
-offset_right = 1086.0
-offset_bottom = 44.0
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 25
-
 [node name="level_name" type="Label" parent="camera/ui"]
 offset_left = 67.0
 offset_top = 13.0
@@ -77,16 +75,222 @@ theme = ExtResource("3_mstm8")
 theme_override_font_sizes/font_size = 25
 text = "\"Hello world\""
 
+[node name="objective_text" type="Label" parent="camera/ui"]
+offset_left = 71.0
+offset_top = 57.0
+offset_right = 1083.0
+offset_bottom = 95.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("3_mstm8")
+theme_override_font_sizes/font_size = 18
+text = "Objective text goes here."
+
 [node name="item_select" parent="camera/ui" node_paths=PackedStringArray("PlayerBuildPlacement") instance=ExtResource("2_jla7h")]
-offset_right = 375.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 70.0
+offset_top = -118.0
+offset_right = 326.0
+offset_bottom = -17.0
+grow_vertical = 0
 PlayerBuildPlacement = NodePath("../../../player/Build")
+
+[node name="level_progress" parent="camera/ui" node_paths=PackedStringArray("Reactor") instance=ExtResource("4_0123i")]
+Reactor = NodePath("../../../reactor")
+
+[node name="win_window" type="Control" parent="camera/ui"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.5
+offset_top = -135.5
+offset_right = 168.5
+offset_bottom = 135.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="camera/ui/win_window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -132.0
+offset_right = 167.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="camera/ui/win_window"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.5
+offset_top = 18.0
+offset_right = 134.5
+offset_bottom = 47.0
+grow_horizontal = 2
+theme = ExtResource("5_mj6dk")
+text = "Success!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="camera/ui/win_window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -13.5
+offset_right = 74.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_mstm8")
+text = "Continue"
+script = ExtResource("6_ublex")
+LoadScene = "res://Scenes/menu.tscn"
+
+[node name="loss_window" type="Control" parent="camera/ui"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.5
+offset_top = -135.5
+offset_right = 168.5
+offset_bottom = 135.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="camera/ui/loss_window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -132.0
+offset_right = 167.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="camera/ui/loss_window"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.5
+offset_top = 18.0
+offset_right = 134.5
+offset_bottom = 47.0
+grow_horizontal = 2
+theme = ExtResource("5_mj6dk")
+text = "Oh no :("
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="camera/ui/loss_window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -13.5
+offset_right = 74.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_mstm8")
+text = "Restart"
+script = ExtResource("7_7jfko")
+
+[node name="Button2" type="Button" parent="camera/ui/loss_window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = 26.0
+offset_right = 75.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_mstm8")
+text = "Menu"
+script = ExtResource("6_ublex")
+LoadScene = "res://Scenes/menu.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="camera/ui"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -243.0
+offset_top = -115.0
+offset_right = -60.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="camera/ui/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="camera/ui/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " E "
+
+[node name="Label" type="Label" parent="camera/ui/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " Place selected"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="camera/ui/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="camera/ui/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = " R "
+
+[node name="Label" type="Label" parent="camera/ui/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = " Rotate"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="camera/ui/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="camera/ui/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = " Q "
+
+[node name="Label" type="Label" parent="camera/ui/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = " Delete"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, 0.612372, -0.353553, 0, 0.5, 0.866025, 0.707107, -0.612372, 0.353553, 0, 6, 0)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a7mry")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, -0.25, -0.433013, 0.5, 0.433013, 0.75, 0, -0.866025, 0.5, 0, 5.78665, 0)
-shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("1_hluua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 17)
@@ -168,7 +372,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 32)
 [node name="cell25" parent="grid" instance=ExtResource("1_dfj3w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 32)
 
-[node name="reactor" type="Node" parent="."]
+[node name="reactor" type="Node" parent="." node_paths=PackedStringArray("WinWindow", "LossWindow")]
 script = ExtResource("4_mvd3p")
+WinWindow = NodePath("../camera/ui/win_window")
+LossWindow = NodePath("../camera/ui/loss_window")
 
 [editable path="player"]

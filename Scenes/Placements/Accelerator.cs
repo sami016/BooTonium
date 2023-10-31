@@ -38,7 +38,7 @@ public partial class Accelerator : Node3D
             upgraded.Direction = enemy.Direction;
             upgraded.Position = enemy.Position;
             upgraded.TrackPosition = enemy.TrackPosition;
-            GetParent().GetParent().AddChild(upgraded, true);
+            GetParent().AddChild(upgraded, true);
             enemy.QueueFree();
         }
     }

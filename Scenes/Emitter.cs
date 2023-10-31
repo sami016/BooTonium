@@ -11,9 +11,22 @@ public partial class Emitter : StaticBody3D
 	public override void _Ready()
 	{
 		_count = 1;
-	}
+        var area3D = GetNode<Area3D>("./Area3D");
+        area3D.BodyEntered += OnBodyEntered;
+    }
 
-	public override void _Process(double delta)
+    private void OnBodyEntered(Node3D body)
+    {
+        if (body is Enemy enemy)
+        {
+            if (enemy.Age > 1)
+            {
+                enemy.Explode();
+            }
+        }
+    }
+    
+    public override void _Process(double delta)
 	{
 		_count += delta * 0.2;
 

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://clotogrj5ccbt"]
+
+[ext_resource type="Texture2D" uid="uid://dv61m07tup4c2" path="res://Textures/thermometer.png" id="1_sly80"]
+[ext_resource type="Script" path="res://Scenes/UI/LevelProgress.cs" id="1_wahmc"]
+[ext_resource type="Texture2D" uid="uid://b6ooaohs46o52" path="res://Textures/red_circle.png" id="2_k5vnn"]
+
+[sub_resource type="Gradient" id="Gradient_i144a"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0.0694418, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jc7k7"]
+gradient = SubResource("Gradient_i144a")
+
+[node name="level_progress" type="VBoxContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -301.0
+offset_right = 499.0
+offset_bottom = 300.0
+grow_horizontal = 0
+scale = Vector2(0.3, 0.3)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("1_wahmc")
+
+[node name="thermo" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_sly80")
+
+[node name="progress" type="TextureProgressBar" parent="thermo"]
+layout_mode = 2
+offset_left = 156.0
+offset_top = 116.0
+offset_right = 746.0
+offset_bottom = 180.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_jc7k7")
+
+[node name="TextureRect" type="TextureRect" parent="thermo"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 86.0
+offset_right = 170.0
+offset_bottom = 218.0
+texture = ExtResource("2_k5vnn")
+expand_mode = 1
